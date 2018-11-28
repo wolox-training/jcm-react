@@ -7,7 +7,7 @@ npm install
 npm start
 ```
 
-The API will run on port 3005 by default
+The API will run on port 3005 by default.
 
 ## API Documentation
 
