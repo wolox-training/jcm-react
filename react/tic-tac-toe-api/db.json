@@ -46,8 +46,8 @@
   "users": [
     {
       "id": 1,
-      "username": "admin",
-      "password": "1234",
+      "email": "admin@wolox.com.ar",
+      "password": "12345678",
       "token": "1VvVIRQfAS"
     }
   ]

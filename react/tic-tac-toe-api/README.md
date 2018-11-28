@@ -91,8 +91,8 @@ npm start
 **Body**
 ```json
   {
-    "username": "admin",
-    "password": "1234"
+    "email": "admin@wolox.com.ar",
+    "password": "12345678"
   }
 ```
 
