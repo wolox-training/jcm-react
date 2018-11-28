@@ -7,7 +7,7 @@
     "start": "node index.js"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "json-server": "^0.14.0"
   }
