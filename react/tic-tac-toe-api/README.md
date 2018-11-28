@@ -75,10 +75,10 @@ npm start
 
 **Body**
 ```json
-{
- "id": 7,
- "createdAt": "2018-11-28T13:02:56.613Z"
-}
+  {
+    "id": 7,
+    "createdAt": "2018-11-28T13:02:56.613Z"
+  }
 ```
 
 
@@ -90,10 +90,10 @@ npm start
 
 **Body**
 ```json
-{
-	"username": "admin",
-	"password": "1234"
-}
+  {
+    "username": "admin",
+    "password": "1234"
+  }
 ```
 
 #### Response
@@ -104,7 +104,7 @@ npm start
 
 **Body**
 ```json
-{
-  "token": "your token"
-}
+  {
+    "token": "your token"
+  }
 ```
