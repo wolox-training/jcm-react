@@ -4,6 +4,8 @@ import Game from './screens/Game';
 
 import '../scss/application.scss';
 
-const App = () => <Game />;
+function App() {
+  return <Game />;
+}
 
 export default App;

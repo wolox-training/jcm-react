@@ -3,16 +3,18 @@ import React from 'react';
 import styles from './styles.module.scss';
 import Board from './components/Board';
 
-const Game = () => (
-  <div className={styles.game}>
-    <div className={styles.gameBoard}>
-      <Board />
+function Game () {
+  return (
+    <div className={styles.game}>
+      <div className={styles.gameBoard}>
+        <Board />
+      </div>
+      <div className={styles.gameInfo}>
+        <div>{/* status */}</div>
+        <ol>{/* TODO */}</ol>
+      </div>
     </div>
-    <div className={styles.gameInfo}>
-      <div>{/* status */}</div>
-      <ol>{/* TODO */}</ol>
-    </div>
-  </div>
-);
+  );
+}
 
 export default Game;
