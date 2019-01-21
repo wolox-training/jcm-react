@@ -1,0 +1,17 @@
+.food-container {
+  display: flex;
+  flex-direction: column;
+  margin-right: 50px;
+  max-width: 400px;
+}
+
+.food-container:nth-child(3n + 3) {
+  margin: 0;
+}
+
+.food-image {
+  align-self: center;
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+}
