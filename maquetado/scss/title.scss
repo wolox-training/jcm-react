@@ -1,0 +1,16 @@
+.title {
+  align-items: center;
+  display: flex;
+  font-size: $text-big;
+  height: $text-decoration-height;
+
+  &::before {
+    background: url('images/triangle.svg') no-repeat;
+    content: '';
+    height: 100%;
+    left: 20px;
+    position: relative;
+    width: $text-decoration-width;
+    z-index: -1;
+  }
+}
