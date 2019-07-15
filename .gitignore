@@ -9,14 +9,3 @@ yarn-debug.log*
 yarn-error.log*
 *.log
 .history
-
-### Sass ###
-.sass-cache/
-.scss-cache/
-*.css.map
-*.sass.map
-*.scss.map
-*.css
-
-## System ##
-.DS_Store
