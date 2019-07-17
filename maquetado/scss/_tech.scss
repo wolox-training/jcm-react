@@ -1,0 +1,45 @@
+.tech {
+  align-items: center;
+  background-color: $green;
+  border-radius: 5px;
+  display: inline-flex;
+  flex-direction: column;
+  margin: $tech-decoration-offset 0 0 $tech-decoration-offset;
+  max-width: 240px;
+  padding: 2em;
+  position: relative;
+  width: 100%;
+
+  &:before {
+    border: 1px solid $green;
+    border-radius: 5px;
+    content: '';
+    height: 100%;
+    left: -$tech-decoration-offset;
+    position: absolute;
+    top: -$tech-decoration-offset;
+    width: 100%;
+    z-index: -1;
+  }
+
+  &-title {
+    font-size: $text-big;
+    margin-bottom: 0.5rem;
+  }
+  
+  &-logo {
+    height: $tech-logo-size;
+    margin-bottom: 0.5rem;
+  }
+
+  &-description {
+    font-size: $text-medium;
+    text-align: center;
+  }
+
+  &-release-date {
+    font-size: $text-medium;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+}
