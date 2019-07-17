@@ -4,7 +4,7 @@
   font-size: $text-big;
   height: $text-decoration-height;
 
-  &:before {
+  &::before {
     background: url('images/triangle.svg') no-repeat;
     content: '';
     height: 100%;
