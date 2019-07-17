@@ -6,7 +6,7 @@
   flex-direction: column;
   margin: $tech-decoration-offset 0 0 $tech-decoration-offset;
   max-width: 240px;
-  padding: 30px;
+  padding: 20px;
   position: relative;
   width: 100%;
 
@@ -30,6 +30,7 @@
   &-logo {
     height: $tech-logo-size;
     margin-bottom: 10px;
+    max-width: 90%;
   }
 
   &-description {
@@ -41,5 +42,19 @@
     font-size: $text-medium;
     font-weight: 700;
     margin-bottom: 15px;
+  }
+}
+
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 100px;
+
+  &:not(:last-child) {
+    margin-bottom: 100px;
+  }
+
+  .tech {
+    margin: 20px;
   }
 }
