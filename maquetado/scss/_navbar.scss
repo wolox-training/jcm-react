@@ -1,0 +1,21 @@
+.nav {
+  align-items: center;
+  background-color: #FFF;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
+  display: flex;
+  height: $nav-height;
+  justify-content: space-between;
+  padding: 20px;
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+
+  &-logo {
+    flex: 0;
+    height: $nav-logo-height;
+  }
+
+  &-item {
+    font-size: $text-big;
+  }
+}
