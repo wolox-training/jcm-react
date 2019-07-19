@@ -1,31 +1,16 @@
 .tech {
   align-items: center;
-  background-color: $green;
-  border-radius: 5px;
   display: flex;
   flex-direction: column;
-  margin: $tech-decoration-offset 0 0 $tech-decoration-offset;
-  max-width: 240px;
+  justify-content: center;
+  max-width: $tech-width;
   padding: 20px;
-  position: relative;
   width: 100%;
+  height: 100%;
 
-  &::before {
-    border: 1px solid $green;
-    border-radius: 5px;
-    content: '';
-    height: 100%;
-    left: -$tech-decoration-offset;
-    position: absolute;
-    transition: transform 0.5s ease;
-    top: -$tech-decoration-offset;
-    width: 100%;
-    z-index: -1;
-  }
-
-  &:hover::before {
-    $translation-final: ($tech-decoration-offset * 2) - 1;
-    transform: translate($translation-final, $translation-final);
+  &:first-child {
+    grid-row: 1 / -1;
+    border-right: 2px solid $green;
   }
 
   &-title {
@@ -52,15 +37,12 @@
 }
 
 .tech-list {
-  display: flex;
-  flex-wrap: wrap;
-  padding-left: 100px;
-
-  &:not(:last-child) {
-    margin-bottom: 100px;
-  }
-
-  .tech {
-    margin: 20px;
-  }
+  align-items: center;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(3, $tech-width);
+  grid-template-rows: repeat(2, auto);
+  justify-content: center;
+  padding: 20px 0;
+  margin-bottom: 100px;
 }
