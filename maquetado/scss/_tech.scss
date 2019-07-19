@@ -6,7 +6,7 @@
   flex-direction: column;
   margin: $tech-decoration-offset 0 0 $tech-decoration-offset;
   max-width: 240px;
-  padding: 30px;
+  padding: 20px;
   position: relative;
   width: 100%;
 
@@ -17,9 +17,15 @@
     height: 100%;
     left: -$tech-decoration-offset;
     position: absolute;
+    transition: transform 0.5s ease;
     top: -$tech-decoration-offset;
     width: 100%;
     z-index: -1;
+  }
+
+  &:hover::before {
+    $translation-final: ($tech-decoration-offset * 2) - 1;
+    transform: translate($translation-final, $translation-final);
   }
 
   &-title {
@@ -30,6 +36,7 @@
   &-logo {
     height: $tech-logo-size;
     margin-bottom: 10px;
+    max-width: 90%;
   }
 
   &-description {
@@ -41,5 +48,19 @@
     font-size: $text-medium;
     font-weight: 700;
     margin-bottom: 15px;
+  }
+}
+
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 100px;
+
+  &:not(:last-child) {
+    margin-bottom: 100px;
+  }
+
+  .tech {
+    margin: 20px;
   }
 }
