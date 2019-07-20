@@ -18,3 +18,9 @@
     font-size: $text-big;
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .dev-tools {
+    display: none;
+  }
+}
