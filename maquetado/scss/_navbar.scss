@@ -1,6 +1,6 @@
 .nav {
   align-items: center;
-  background-color: #FFF;
+  background-color: $white;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
   display: flex;
   height: $nav-height;
@@ -8,10 +8,9 @@
   padding: 20px;
   position: fixed;
   width: 100%;
-  z-index: 9999;
+  z-index: 1;
 
   &-logo {
-    flex: 0;
     height: $nav-logo-height;
   }
 
