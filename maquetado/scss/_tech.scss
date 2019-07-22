@@ -11,6 +11,11 @@
     grid-row: 1 / 3;
   }
 
+  &:hover::before {
+    $translation-final: ($tech-decoration-offset * 2) - 1;
+    transform: translate($translation-final, $translation-final);
+  }
+
   &-title {
     font-size: $text-big;
     margin-bottom: 10px;
