@@ -20,7 +20,7 @@
     font-size: $text-big;
     margin-bottom: 10px;
   }
-  
+
   &-logo {
     height: $tech-logo-size;
     margin-bottom: 10px;
@@ -46,4 +46,20 @@
   grid-template-columns: repeat(3, $tech-width);
   justify-content: center;
   margin-bottom: 100px;
+}
+
+@media screen and (max-width: 1024px) {
+  .tech-list {
+    grid-gap: 40px;
+    grid-template-columns: $tech-width;
+  }
+
+  .tech {
+    border-bottom: 2px solid $green;
+
+    &:first-child {
+      border-right: none;
+      grid-row: auto;
+    }
+  }
 }
