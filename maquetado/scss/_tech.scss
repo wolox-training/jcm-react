@@ -1,26 +1,14 @@
 .tech {
   align-items: center;
-  background-color: $green;
-  border-radius: 5px;
   display: flex;
   flex-direction: column;
-  margin: $tech-decoration-offset 0 0 $tech-decoration-offset;
-  max-width: 240px;
+  height: 100%;
+  justify-content: center;
   padding: 20px;
-  position: relative;
-  width: 100%;
 
-  &::before {
-    border: 1px solid $green;
-    border-radius: 5px;
-    content: '';
-    height: 100%;
-    left: -$tech-decoration-offset;
-    position: absolute;
-    transition: transform 0.5s ease;
-    top: -$tech-decoration-offset;
-    width: 100%;
-    z-index: -1;
+  &:first-child {
+    border-right: 2px solid $green;
+    grid-row: 1 / 3;
   }
 
   &:hover::before {
@@ -52,15 +40,10 @@
 }
 
 .tech-list {
-  display: flex;
-  flex-wrap: wrap;
-  padding-left: 100px;
-
-  &:not(:last-child) {
-    margin-bottom: 100px;
-  }
-
-  .tech {
-    margin: 20px;
-  }
+  align-items: center;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(3, $tech-width);
+  justify-content: center;
+  margin-bottom: 100px;
 }
