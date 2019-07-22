@@ -1,0 +1,21 @@
+.footer {
+  align-items: center;
+  background-color: $blue;
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+
+  & > * {
+    color: $white;
+  }
+
+  &-msg {
+    font-size: $text-big;
+    margin-bottom: 10px;
+  }
+
+  &-copyright {
+    align-self: flex-end;
+    margin-bottom: 10px;
+  }
+}
