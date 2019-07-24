@@ -11,3 +11,7 @@ export function min(...args) {
 export function copy(object) {
   return isArray(object) ? [...object] : { ...object };
 }
+
+export function reverseMerge(first, second) {
+  return [...second, ...first];
+}
