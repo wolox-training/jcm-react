@@ -6,6 +6,6 @@ export function min(...args) {
   return Math.min(...items);
 }
 
-export function copy() {
-
+export function copy(object) {
+  return { ...object };
 }
