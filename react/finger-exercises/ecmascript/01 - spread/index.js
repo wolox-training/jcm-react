@@ -15,3 +15,10 @@ export function copy(object) {
 export function reverseMerge(first, second) {
   return [...second, ...first];
 }
+
+export function filterAttribs(object) {
+  const clone = copy(object);
+  delete clone.a;
+  delete clone.b;
+  return clone;
+}
