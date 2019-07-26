@@ -8,7 +8,7 @@ describe('Promises', () => {
       expect(delayedTime).toBeGreaterThanOrEqual(TIME - 100);
       expect(delayedTime).toBeLessThanOrEqual(TIME + 100);
     }));
-  xit('delay will not wait if the time is too long', () => delay(TIME * TIME)
+  it('delay will not wait if the time is too long', () => delay(TIME * TIME)
     .catch(e => expect(e).toEqual(Error('This time is too much !'))));
 
   xit('asyncDelay also works well', async () => {
@@ -17,3 +17,5 @@ describe('Promises', () => {
     expect(delayedTime).toBeLessThanOrEqual(TIME + 100);
   });
 });
+
+export default TIME;
