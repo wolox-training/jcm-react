@@ -1,24 +1,15 @@
 import isArray from './utils';
 
+// eslint-disable-next-line consistent-return
 export function min(...args) {
-  if (args.length === 0) {
-    return undefined;
+  if (args.length) {
+    const items = isArray(args[0]) ? args[0] : args;
+    return Math.min(...items);
   }
-  const items = isArray(args[0]) ? args[0] : args;
-  return Math.min(...items);
 }
 
-export function copy(object) {
-  return isArray(object) ? [...object] : { ...object };
-}
+export const copy = (object) => (isArray(object) ? [...object] : { ...object });
 
-export function reverseMerge(first, second) {
-  return [...second, ...first];
-}
+export const reverseMerge = (first, second) => [...second, ...first];
 
-export function filterAttribs(object) {
-  const clone = copy(object);
-  delete clone.a;
-  delete clone.b;
-  return clone;
-}
+export const filterAttribs = ({ a, b, ...attrs }) => attrs;

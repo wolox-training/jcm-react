@@ -16,11 +16,4 @@ export function delay(time) {
   });
 }
 
-export async function asyncDelay(time) {
-  const startDate = Date.now();
-  const diff = await new Promise(resolve => {
-    setInterval(() => resolve(Date.now() - startDate), time);
-  });
-  
-  return diff;
-}
+export const asyncDelay = (time) => delay(time);

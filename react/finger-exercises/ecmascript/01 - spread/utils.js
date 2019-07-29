@@ -1,5 +1,3 @@
-function isArray(aPossibleArray) {
-  return aPossibleArray.constructor === Array;
-}
+const isArray = (aPossibleArray) => aPossibleArray.constructor === Array;
 
 export default isArray;
