@@ -1,9 +1,3 @@
-// This have a linter problem, it says that we should prefer
-// export default
-// Would you like to fix this issue ?
+const isArray = (aPossibleArray) => aPossibleArray.constructor === Array;
 
-export function isArray(aPossibleArray) {
-  return aPossibleArray.constructor === Array;
-}
-
-// export default isArray;
+export default isArray;
