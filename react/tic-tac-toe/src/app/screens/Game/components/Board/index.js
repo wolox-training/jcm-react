@@ -5,8 +5,24 @@ import Square from '../Square';
 import styles from './styles.module.scss';
 
 class Board extends Component {
+  state = {
+    squares: Array(9).fill(null)
+  }
+
+  handleClick(i) {
+    const { squares } = this.state;
+    squares[i] = 'X';
+    this.setState({ squares });
+  }
+
   renderSquare(i) {
-    return <Square value={i} />;
+    return (
+      <Square
+        value={this.state.squares[i]}
+        // eslint-disable-next-line react/jsx-no-bind
+        onClick={() => this.handleClick(i)}
+      />
+    );
   }
 
   render() {

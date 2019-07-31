@@ -1,24 +1,19 @@
 /* eslint-disable react/jsx-no-bind */
-import React, { Component } from 'react';
+/* eslint-disable react/prop-types */
+import React from 'react';
 
 import styles from './styles.module.scss';
 
-class Square extends Component {
-  state = {
-    value: null
-  }
-
-  render() {
-    return (
-      <button
-        type="button"
-        className={styles.square}
-        onClick={() => this.setState({ value: 'X' })}
-      >
-        {this.state.value}
-      </button>
-    );
-  }
+function Square({ value, onClick }) {
+  return (
+    <button
+      type="button"
+      className={styles.square}
+      onClick={onClick}
+    >
+      {value}
+    </button>
+  );
 }
 
 export default Square;
