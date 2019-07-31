@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Square from '../Square';
 
+import calculateWinner from './utils';
 import styles from './styles.module.scss';
 
 class Board extends Component {
@@ -16,6 +17,11 @@ class Board extends Component {
 
   handleClick(i) {
     const { squares } = this.state;
+    
+    if (calculateWinner(squares) || squares[i]) {
+      return;
+    }
+
     squares[i] = this.nextTurn();
     this.setState(prevState => ({
       squares,
@@ -34,7 +40,15 @@ class Board extends Component {
   }
 
   render() {
-    const status = `Next player: ${this.nextTurn()}`;
+    const winner = calculateWinner(this.state.squares);
+    let status = '';
+
+    if (winner) {
+      status = `Winner: ${winner}`;
+    } else {
+      status = `Next player: ${this.nextTurn()}`;
+    }
+
     return (
       <div>
         <div className={styles.status}>{status}</div>
@@ -57,5 +71,6 @@ class Board extends Component {
     );
   }
 }
+
 
 export default Board;
