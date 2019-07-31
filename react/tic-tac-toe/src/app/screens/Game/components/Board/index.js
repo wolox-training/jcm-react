@@ -6,13 +6,21 @@ import styles from './styles.module.scss';
 
 class Board extends Component {
   state = {
-    squares: Array(9).fill(null)
+    squares: Array(9).fill(null),
+    xIsNext: true
+  }
+
+  nextTurn() {
+    return this.state.xIsNext ? 'X' : 'O';
   }
 
   handleClick(i) {
     const { squares } = this.state;
-    squares[i] = 'X';
-    this.setState({ squares });
+    squares[i] = this.nextTurn();
+    this.setState(prevState => ({
+      squares,
+      xIsNext: !prevState.xIsNext
+    }));
   }
 
   renderSquare(i) {
@@ -26,7 +34,7 @@ class Board extends Component {
   }
 
   render() {
-    const status = 'Next player: X';
+    const status = `Next player: ${this.nextTurn()}`;
     return (
       <div>
         <div className={styles.status}>{status}</div>
