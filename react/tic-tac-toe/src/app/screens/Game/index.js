@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import calculateWinner from './utils';
 import styles from './styles.module.scss';
 import Board from './components/Board';
-import RestateButton from './components/RestateButton';
+import MoveButton from './components/MoveButton';
 
 class Game extends Component {
   state = {
@@ -40,13 +40,13 @@ class Game extends Component {
     });
   }
 
-  renderRestateButton = (move) => {
+  renderMoveButton = (_, move) => {
     const desc = move
       ? `Go to move #${move}`
       : 'Go to game start';
 
     return (
-      <RestateButton
+      <MoveButton
         key={move}
         move={move}
         desc={desc}
@@ -56,8 +56,8 @@ class Game extends Component {
   }
 
   render() {
-    const { history } = this.state;
-    const current = history[this.state.stepNumber];
+    const { history, stepNumber } = this.state;
+    const current = history[stepNumber];
     const winner = calculateWinner(current.squares);
     let status = '';
 
@@ -78,7 +78,7 @@ class Game extends Component {
         <div className={styles.gameInfo}>
           <div>{status}</div>
           <ol>
-            {history.map((step, move) => this.renderRestateButton(move))}
+            {history.map(this.renderMoveButton)}
           </ol>
         </div>
       </div>

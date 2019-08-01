@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function RestateButton({ desc, move, onClick }) {
+function MoveButton({ desc, move, onClick }) {
   function handleClick() {
     onClick(move);
   }
@@ -18,10 +18,10 @@ function RestateButton({ desc, move, onClick }) {
   );
 }
 
-RestateButton.propTypes = {
+MoveButton.propTypes = {
   desc: PropTypes.string.isRequired,
   move: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired
 };
 
-export default RestateButton;
+export default MoveButton;
