@@ -1,20 +1,18 @@
-/* eslint-disable react/jsx-no-bind */
-/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Square from '../Square';
 
 import styles from './styles.module.scss';
 
 class Board extends Component {
-  renderSquare(i) {
-    return (
-      <Square
-        value={this.props.squares[i]}
-        onClick={() => this.props.onClick(i)}
-      />
-    );
-  }
+  renderSquare = (i) => (
+    <Square
+      value={this.props.squares[i]}
+      item={i}
+      onClick={this.props.onClick}
+    />
+  )
 
   render() {
     return (
@@ -39,5 +37,9 @@ class Board extends Component {
   }
 }
 
+Board.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  squares: PropTypes.arrayOf(PropTypes.string)
+};
 
 export default Board;
