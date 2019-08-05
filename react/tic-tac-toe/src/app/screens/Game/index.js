@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import calculateWinner from './utils';
 import styles from './styles.module.scss';
 import Board from './components/Board';
-import MoveButton from './components/MoveButton';
+import TriggerButton from './components/TriggerButton';
 
 class Game extends Component {
   state = {
@@ -41,17 +41,16 @@ class Game extends Component {
   }
 
   renderMoveButton = (_, move) => {
-    const desc = move
+    const description = move
       ? `Go to move #${move}`
       : 'Go to game start';
 
     return (
-      <MoveButton
-        key={move}
-        move={move}
-        desc={desc}
-        onClick={this.handleJumpTo}
-      />
+      <li key={move}>
+        <TriggerButton onClick={this.handleJumpTo} onClickArgs={move}>
+          {description}
+        </TriggerButton>
+      </li>
     );
   }
 

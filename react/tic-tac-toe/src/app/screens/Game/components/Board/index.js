@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Square from '../Square';
+import TriggerButton from '../TriggerButton';
 
 import styles from './styles.module.scss';
 
 class Board extends Component {
-  renderSquare = (i) => (
-    <Square
-      value={this.props.squares[i]}
-      item={i}
-      onClick={this.props.onClick}
-    />
-  )
+  renderSquare = (i) => {
+    const { squares, onClick } = this.props;
+    return (
+      <TriggerButton btnClass={styles.square} onClick={onClick} onClickArgs={i}>
+        {squares[i]}
+      </TriggerButton>
+    );
+  }
 
   render() {
     return (
