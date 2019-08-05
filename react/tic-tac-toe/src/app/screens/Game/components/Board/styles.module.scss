@@ -1,4 +1,6 @@
 @import 'src/scss/colors.scss';
+$square-background: $white;
+$square-border: $dust-gray;
 
 .board-row:after {
   clear: both;
@@ -9,9 +11,6 @@
 .status {
   margin-bottom: 10px;
 }
-
-$square-background: $white;
-$square-border: $dust-gray;
 
 .square {
   background: $square-background;
