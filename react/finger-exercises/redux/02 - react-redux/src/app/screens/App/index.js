@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import store from '@redux/store';
+import actionsCreators from '@redux/book/actions';
 import Navbar from '@components/Navbar';
 import Footer from '@components/Footer';
 
@@ -19,11 +20,13 @@ class App extends Component {
       const { books, bookSelected } = store.getState();
       this.setState({ books, bookSelected });
     });
-    // TODO to implement the dispatch
+    store.dispatch(actionsCreators.getBooks());
   }
 
   // TODO to implement the dispatch
-  onSearch = value => {};
+  onSearch = value => {
+    store.dispatch(actionsCreators.searchBook(value));
+  };
 
   // TODO to implement the dispatch
   addToCart = item => {};
