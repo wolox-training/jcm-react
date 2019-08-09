@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import Square from '../Square';
+import TriggerButton from '../TriggerButton';
 
 import styles from './styles.module.scss';
 
 class Board extends Component {
-  renderSquare() {
-    return <Square />;
+  renderSquare = (i) => {
+    const { squares, onClick } = this.props;
+    return (
+      <TriggerButton btnClass={styles.square} onClick={onClick} onClickArgs={i}>
+        {squares[i]}
+      </TriggerButton>
+    );
   }
 
   render() {
-    const status = 'Next player: X';
     return (
       <div>
-        <div className={styles.status}>{status}</div>
         <div className={styles.boardRow}>
           {this.renderSquare(0)}
           {this.renderSquare(1)}
@@ -33,5 +37,10 @@ class Board extends Component {
     );
   }
 }
+
+Board.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  squares: PropTypes.arrayOf(PropTypes.string)
+};
 
 export default Board;

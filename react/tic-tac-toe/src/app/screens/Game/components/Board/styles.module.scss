@@ -1,9 +1,32 @@
+@import 'src/scss/colors.scss';
+$square-background: $white;
+$square-border: $dust-gray;
+
 .board-row:after {
   clear: both;
-  content: "";
+  content: '';
   display: table;
 }
 
 .status {
   margin-bottom: 10px;
+}
+
+.square {
+  background: $square-background;
+  border: 1px solid $square-border;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  height: 34px;
+  line-height: 34px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 34px;
+}
+
+.square:focus {
+  outline: none;
 }
