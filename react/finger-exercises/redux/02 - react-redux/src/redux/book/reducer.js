@@ -13,24 +13,26 @@ function reducer(state = initialState, action) {
     case actions.ADD_TO_CART:
       return { ...state, bookSelected: state.bookSelected.concat(action.payload) };
     case actions.ADD_ITEM: {
-      const bookSelected = state.bookSelected.slice();
+      const { bookSelected } = state;
       const targetIndex = bookSelected.findIndex(el => el.id === action.payload);
+      const newBookSelected = bookSelected.map((item, index) =>
+        index === targetIndex ? { ...item, quantity: item.quantity + 1 } : item
+      );
 
-      bookSelected[targetIndex].quantity += 1;
-      return { ...state, bookSelected };
+      return { ...state, bookSelected: newBookSelected };
     }
     case actions.REMOVE_ITEM: {
-      const bookSelected = state.bookSelected.slice();
+      const { bookSelected } = state;
       const targetIndex = bookSelected.findIndex(el => el.id === action.payload);
-      const itemsQuantity = bookSelected[targetIndex].quantity;
 
-      if (itemsQuantity === 1) {
-        bookSelected.splice(targetIndex, 1);
-      } else {
-        bookSelected[targetIndex].quantity -= 1;
-      }
+      const newBookSelected =
+        bookSelected[targetIndex].quantity === 1
+          ? bookSelected.filter((_, index) => index !== targetIndex)
+          : bookSelected.map((item, index) =>
+              index === targetIndex ? { ...item, quantity: item.quantity - 1 } : item
+            );
 
-      return { ...state, bookSelected };
+      return { ...state, bookSelected: newBookSelected };
     }
     case actions.SEARCH_ITEM:
       return {
