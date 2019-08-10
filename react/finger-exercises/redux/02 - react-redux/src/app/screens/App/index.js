@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { arrayOf, func } from 'prop-types';
+import { arrayOf, func, bool } from 'prop-types';
 import { bookSelectedPropType, bookPropType } from '@constants/propTypes';
 import bookActions from '@redux/book/actions';
 import Navbar from '@components/Navbar';
@@ -40,17 +40,19 @@ class App extends Component {
   };
 
   render() {
-    const { bookSelected, books } = this.props;
+    const { books, bookSelected, bookLoading } = this.props;
+    const dataStatus = bookLoading ? 'Loading Data...' : 'No Data';
+
     return (
       <Fragment>
         <Navbar />
         <div className={styles.container}>
-          <Search onSearch={this.onSearch} />
+          <Search onSearch={this.handleSearchBook} />
           {books.length ? (
             books.map(this.renderBooks)
           ) : (
-            <div className={styles.noData}>
-              <h2 className={styles.title}>No Data</h2>
+            <div className={styles.dataStatus}>
+              <h2 className={styles.title}>{dataStatus}</h2>
             </div>
           )}
         </div>
@@ -76,6 +78,7 @@ const mapDispatchToProps = dispatch => ({
 App.propTypes = {
   bookSelected: arrayOf(bookSelectedPropType),
   books: arrayOf(bookPropType),
+  bookLoading: bool.isRequired,
   getBooks: func.isRequired,
   searchBook: func.isRequired,
   addToCart: func.isRequired

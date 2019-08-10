@@ -3,13 +3,19 @@ import { actions } from './actions';
 const initialState = {
   books: [],
   bookSelected: [],
-  originalData: []
+  originalData: [],
+  bookLoading: false,
+  bookError: ''
 };
 
 function reducer(state = initialState, action) {
   switch (action.type) {
     case actions.GET_BOOKS:
-      return { ...state, books: action.payload, originalData: action.payload };
+      return { ...state, bookLoading: true };
+    case actions.GET_BOOKS_SUCCESS:
+      return { ...state, books: action.payload, originalData: action.payload, bookLoading: false };
+    case actions.GET_BOOKS_FAILURE:
+      return { ...state, bookProblem: action.payload, bookLoading: false };
     case actions.ADD_TO_CART:
       return { ...state, bookSelected: state.bookSelected.concat(action.payload) };
     case actions.ADD_ITEM: {
