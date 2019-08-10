@@ -13,11 +13,7 @@ class ShoppingCart extends PureComponent {
     open: false
   };
 
-  toggleContent = () => {
-    this.setState(prevState => ({
-      open: !prevState.open
-    }));
-  };
+  toggleContent = () => this.setState(prevState => ({ open: !prevState.open }));
 
   total = (accumulator, currentValue) => accumulator + currentValue.quantity;
 
