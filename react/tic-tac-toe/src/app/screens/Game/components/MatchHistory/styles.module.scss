@@ -1,0 +1,32 @@
+@import 'src/scss/colors';
+
+%cell-spacing {
+  padding: 8px;
+}
+
+%row-border {
+  border-style: solid;
+  border-width: 1px 0 1px 0;
+}
+
+.header-row {
+  @extend %row-border;
+
+  border-color: $gray-300;
+}
+
+.header-cell {
+  @extend %cell-spacing;
+
+  background-color: $gray-100;
+}
+
+.body-cell {
+  @extend %cell-spacing;
+}
+
+.body-row {
+  @extend %row-border;
+
+  border-color: $gray-200;
+}

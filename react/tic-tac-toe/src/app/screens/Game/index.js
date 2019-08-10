@@ -4,6 +4,7 @@ import calculateWinner from './utils';
 import styles from './styles.module.scss';
 import Board from './components/Board';
 import TriggerButton from './components/TriggerButton';
+import MatchHistory from './components/MatchHistory';
 
 class Game extends Component {
   state = {
@@ -80,6 +81,7 @@ class Game extends Component {
             {history.map(this.renderMoveButton)}
           </ol>
         </div>
+        <MatchHistory />
       </div>
     );
   }
