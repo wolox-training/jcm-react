@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { arrayOf } from 'prop-types';
+import { arrayOf, func } from 'prop-types';
 import { bookSelectedPropType, bookPropType } from '@constants/propTypes';
-import actionsCreators from '@redux/book/actions';
+import bookActions from '@redux/book/actions';
 import Navbar from '@components/Navbar';
 import Footer from '@components/Footer';
 
@@ -13,27 +13,21 @@ import styles from './styles.scss';
 
 class App extends Component {
   componentDidMount() {
-    this.props.dispatch(actionsCreators.getBooks());
+    this.props.getBooks();
   }
 
-  onSearch = value => {
-    const { dispatch } = this.props;
-    dispatch(actionsCreators.searchBook(value));
-  };
+  handleSearchBook = value => this.props.searchBook(value);
 
-  addToCart = item => {
-    const { dispatch } = this.props;
-    dispatch(actionsCreators.addToCart(item));
-  };
+  handleAddToCart = item => this.props.addToCart(item);
 
   CONFIGURATION_BUTTON = {
     add: {
       text: 'Add to cart',
-      function: this.addToCart
+      function: this.handleAddToCart
     },
     remove: {
       text: 'Remove',
-      function: this.removeItem,
+      function: this.handleRemoveItem,
       isDanger: true
     }
   };
@@ -51,7 +45,7 @@ class App extends Component {
       <Fragment>
         <Navbar />
         <div className={styles.container}>
-          <Search onSearch={this.onSearch} />
+          <Search onSearch={this.handleSearchBook} />
           {books.length ? (
             books.map(this.renderBooks)
           ) : (
@@ -67,14 +61,27 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ bookSelected, books }) => ({
+const mapStateToProps = ({ books, bookSelected, bookLoading }) => ({
   books,
-  bookSelected
+  bookSelected,
+  bookLoading
+});
+
+const mapDispatchToProps = dispatch => ({
+  getBooks: () => dispatch(bookActions.getBooks()),
+  searchBook: value => dispatch(bookActions.searchBook(value)),
+  addToCart: item => dispatch(bookActions.addToCart(item))
 });
 
 App.propTypes = {
   bookSelected: arrayOf(bookSelectedPropType),
-  books: arrayOf(bookPropType)
+  books: arrayOf(bookPropType),
+  getBooks: func.isRequired,
+  searchBook: func.isRequired,
+  addToCart: func.isRequired
 };
 
-export default connect(mapStateToProps)(App);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
