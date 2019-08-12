@@ -1,30 +1,53 @@
 import React, { Component } from 'react';
 
-import services from '~services/MatchesService'; // eslint-disable-line import/no-unresolved
+import MatchServices from '~services/MatchesService'; // eslint-disable-line import/no-unresolved
 
 import styles from './styles.module.scss';
 
+const PLAYER_IDS = {
+  playerOne: 'player_one',
+  playerTwo: 'player_two'
+};
+
+const WINNERS = {
+  [PLAYER_IDS.playerOne]: 'Player One',
+  [PLAYER_IDS.playerTwo]: 'Player Two',
+  tie: 'Tie'
+};
+
 class MatchHistory extends Component {
   state = {
-    matches: []
+    matches: [],
+    matchesLoading: false,
+    matchesError: null
   }
 
   componentDidMount() {
-    services.getMatches().then(response => this.setState({ matches: response.data }));
+    this.getMatches();
   }
 
-
-  humanize = (property) => property.replace(/_/g, ' ')
-    .replace(/(\w+)/g, (match) => match.charAt(0).toUpperCase() + match.slice(1));
-
-  MATCH_RESULT_CLASS = {
-    player_one: 'winner-one', // eslint-disable-line camelcase
-    player_two: 'winner-two', // eslint-disable-line camelcase
-    tie: 'tie'
+  getMatches = async () => {
+    this.setState({ matchesLoading: true });
+    const response = await MatchServices.getMatches();
+    if (response.ok) {
+      this.setState({ matches: response.data });
+    } else {
+      this.setState({ matchesError: response.problem });
+    }
+    this.setState({ matchesLoading: false });
   }
 
   render () {
-    const { matches } = this.state;
+    const { matches, matchesLoading, matchesError } = this.state;
+
+    if (matchesLoading) {
+      return <h1>Loading...</h1>;
+    } else if (matchesError) {
+      return <h1>Oops, something was wrong!</h1>;
+    } else if (matches && !matches.length) {
+      return <h1>Empty data :)</h1>;
+    }
+
     return (
       <table className={styles.matchHistory}>
         <thead>
@@ -38,9 +61,9 @@ class MatchHistory extends Component {
         <tbody>
           {matches.map(match => (
             <tr key={match.id} className={styles.bodyRow}>
-              <td className={styles.bodyCell}>{this.humanize(match.player_one)}</td>
-              <td className={styles.bodyCell}>{this.humanize(match.player_two)}</td>
-              <td className={styles.bodyCell}>{this.humanize(match.winner)}</td>
+              <td className={styles.bodyCell}>{match.player_one}</td>
+              <td className={styles.bodyCell}>{match.player_two}</td>
+              <td className={styles.bodyCell}>{WINNERS[match.winner]}</td>
             </tr>
           ))}
         </tbody>

@@ -10,6 +10,5 @@
   "license": "MIT",
   "dependencies": {
     "json-server": "^0.14.0"
-  },
-  "devDependencies": {}
+  }
 }
