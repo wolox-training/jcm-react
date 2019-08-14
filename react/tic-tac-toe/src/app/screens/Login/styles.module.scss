@@ -16,8 +16,13 @@
   border-radius: 5px;
   box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1),0 1px 2px 0 rgba(0,0,0,0.06);
   color: #4A5568;
+  margin-bottom: 12px;
   padding: 8px 12px;
   width: 100%;
+
+  &-error {
+    border-color: #F56565;
+  }
 }
 
 .button {
@@ -30,6 +35,12 @@
   &:hover {
     background-color: #2B6CB0;
   }
+}
+
+.error {
+  color: #F56565;
+  font-size: 12px;
+  font-style: italic;
 }
 
 .login {
@@ -48,4 +59,8 @@
   max-width: 20rem;
   padding: 30px 35px;
   width: 100%;
+
+  .field:last-of-type {
+    margin-bottom: 24px;
+  }
 }

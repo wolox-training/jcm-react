@@ -4,13 +4,36 @@ import { func } from 'prop-types';
 
 import styles from './styles.module.scss';
 
+const validate = values => {
+  const errors = {};
+  if (!values.email) {
+    errors.email = 'Por favor ingresa un email';
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Selecciona una dirección de email válido';
+  }
+
+  if (!values.password) {
+    errors.password = 'Selecciona una contraseña';
+  } else if (values.password.length < 8) {
+    errors.password = 'Debe tener al menos 8 caracteres';
+  }
+
+  return errors;
+};
+
 class Login extends Component {
-  renderField = ({ input, label, type, placeholder }) => (
+  renderField = ({ input, label, type, placeholder, meta: { touched, error } }) => (
     <div className={styles.field}>
       <label className={styles.label}>
         {label}
       </label>
-      <input {...input} className={styles.input} type={type} placeholder={placeholder} />
+      <input
+        {...input}
+        className={`${styles.input} ${touched && error && styles.inputError}`}
+        type={type}
+        placeholder={placeholder}
+      />
+      {touched && error && (<p className={styles.error}>{error}</p>)}
     </div>
   )
 
@@ -33,11 +56,9 @@ class Login extends Component {
             label="Contraseña"
             placeholder="e.g. * * * * * * * *"
           />
-          <div>
-            <button className={styles.button} type="submit">
-              Sign In
-            </button>
-          </div>
+          <button className={styles.button} type="submit">
+            Sign In
+          </button>
         </form>
       </div>
     );
@@ -48,4 +69,4 @@ Login.propTypes = {
   handleSubmit: func.isRequired
 };
 
-export default reduxForm({ form: 'login' })(Login);
+export default reduxForm({ form: 'login', validate })(Login);
