@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Provider } from 'react-redux';
 
-import Game from './screens/Game';
+import store from '~redux/store'; // eslint-disable-line import/no-unresolved
+
+import Login from './screens/Login';
 
 import '../scss/application.scss';
 
-function App() {
-  return <Game />;
+class App extends Component {
+  handleSubmit = values => {
+    console.log(values);
+  }
+
+  render () {
+    return (
+      <Provider store={store}>
+        <Login onSubmit={this.handleSubmit} />
+      </Provider>
+    );
+  }
 }
 
 export default App;
