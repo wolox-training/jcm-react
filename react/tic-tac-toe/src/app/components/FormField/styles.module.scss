@@ -1,0 +1,38 @@
+@import 'src/scss/colors.scss';
+
+.field {
+  margin-bottom: 16px;
+
+  &:last-of-type {
+    margin-bottom: 24px;
+  }
+}
+
+.label {
+  color: $gray-700;
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 8px;;
+}
+
+.error {
+  color: $red-light;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.input {
+  appearance: none;
+  border: 1px solid $gray-300;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.06);
+  color: $gray-700;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  width: 100%;
+
+  &-error {
+    border-color: $red-light;
+  }
+}

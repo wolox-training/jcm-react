@@ -1,16 +1,22 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { func, string } from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
-import { func } from 'prop-types';
 
+import authActions from '~redux/auth/actions'; // eslint-disable-line import/no-unresolved
+
+import { validate } from './utils';
 import styles from './styles.module.scss';
 import { VALIDATIONS } from './constants';
 
 import Input from '~components/Input'; // eslint-disable-line import/no-unresolved
 
-function Login({ handleSubmit }) {
+function Login({ handleSubmit, loginError }) {
   return (
     <div className={styles.loginWrapper}>
       <div className={styles.loginInside}>
+        {loginError && (<Alert {...ERROR_MESSAGES[loginError]} />)}
         <form className={styles.loginForm} onSubmit={handleSubmit}>
           <Field
             name="email"
@@ -38,7 +44,19 @@ function Login({ handleSubmit }) {
 }
 
 Login.propTypes = {
-  handleSubmit: func.isRequired
+  handleSubmit: func.isRequired,
+  loginError: string.isRequired
 };
 
-export default reduxForm({ form: 'login' })(Login);
+const mapStateToProps = ({ auth }) => ({
+  loginError: auth.loginError
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit: (values) => dispatch(authActions.login(values))
+});
+
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  reduxForm({ form: 'login', validate })
+)(Login);
