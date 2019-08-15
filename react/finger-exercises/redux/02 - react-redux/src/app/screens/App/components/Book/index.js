@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { func, bool, shape, string, number } from 'prop-types';
+import { bool, shape, string, number } from 'prop-types';
 import Button from '@components/Button';
 
 import styles from './styles.scss';
@@ -59,7 +59,6 @@ Book.propTypes = {
   }),
   configButton: shape({
     text: string.isRequired,
-    function: func.isRequired,
     isDanger: bool
   })
 };

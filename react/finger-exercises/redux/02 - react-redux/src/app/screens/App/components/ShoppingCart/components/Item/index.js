@@ -1,19 +1,19 @@
 import React, { PureComponent } from 'react';
 import { func } from 'prop-types';
-import { bookSelectedPropType } from '@constants/propTypes';
 import Button from '@components/Button';
+import { bookSelectedPropType } from '@constants/propTypes';
 
 import styles from './styles.scss';
 
 class Item extends PureComponent {
-  addItem = () => {
-    const { item, addItem } = this.props;
-    addItem(item.id);
+  handleAddItem = () => {
+    const { item, onAddItem } = this.props;
+    onAddItem(item.id);
   };
 
-  removeItem = () => {
-    const { item, removeItem } = this.props;
-    removeItem(item.id);
+  handleRemoveItem = () => {
+    const { item, onRemoveItem } = this.props;
+    onRemoveItem(item.id);
   };
 
   render() {
@@ -23,10 +23,10 @@ class Item extends PureComponent {
         <h3 className={styles.title}>{item.name}</h3>
         <span className={styles.contentButtons}>
           <span className={styles.quantity}>{item.quantity}</span>
-          <Button className={styles.buttonCart} onClick={this.addItem}>
+          <Button className={styles.buttonCart} onClick={this.handleAddItem}>
             <i className="fa fa-plus" />
           </Button>
-          <Button className={styles.buttonCart} onClick={this.removeItem} isDanger>
+          <Button className={styles.buttonCart} onClick={this.handleRemoveItem} isDanger>
             <i className="fa fa-trash" />
           </Button>
         </span>
@@ -37,8 +37,8 @@ class Item extends PureComponent {
 
 Item.propTypes = {
   item: bookSelectedPropType,
-  addItem: func.isRequired,
-  removeItem: func.isRequired
+  onAddItem: func.isRequired,
+  onRemoveItem: func.isRequired
 };
 
 export default Item;
