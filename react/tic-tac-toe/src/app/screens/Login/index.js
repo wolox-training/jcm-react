@@ -7,38 +7,39 @@ import { Field, reduxForm } from 'redux-form';
 import authActions from '~redux/auth/actions'; // eslint-disable-line import/no-unresolved
 
 import { validate } from './utils';
+import { VALIDATIONS, ERROR_MESSAGES } from './constants';
 import styles from './styles.module.scss';
-import { VALIDATIONS } from './constants';
 
 import Input from '~components/Input'; // eslint-disable-line import/no-unresolved
+
+import Alert from '~components/Alert'; // eslint-disable-line import/no-unresolved
+
 
 function Login({ handleSubmit, loginError }) {
   return (
     <div className={styles.loginWrapper}>
-      <div className={styles.loginInside}>
+      <form className={styles.loginForm} onSubmit={handleSubmit}>
+        <Field
+          name="email"
+          type="email"
+          component={Input}
+          label="Email"
+          placeholder="e.g. john.doe@email.com"
+          validate={VALIDATIONS.email}
+        />
+        <Field
+          name="password"
+          type="password"
+          component={Input}
+          label="Password"
+          placeholder="e.g. * * * * * * * *"
+          validate={VALIDATIONS.password}
+        />
         {loginError && (<Alert {...ERROR_MESSAGES[loginError]} />)}
-        <form className={styles.loginForm} onSubmit={handleSubmit}>
-          <Field
-            name="email"
-            type="email"
-            component={Input}
-            label="Email"
-            placeholder="e.g. john.doe@email.com"
-            validate={VALIDATIONS.email}
-          />
-          <Field
-            name="password"
-            type="password"
-            component={Input}
-            label="Password"
-            placeholder="e.g. * * * * * * * *"
-            validate={VALIDATIONS.password}
-          />
-          <button className={styles.button} type="submit">
-              Sign In
-          </button>
-        </form>
-      </div>
+        <button className={styles.button} type="submit">
+          Sign In
+        </button>
+      </form>
     </div>
   );
 }

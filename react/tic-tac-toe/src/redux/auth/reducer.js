@@ -1,8 +1,8 @@
 import { actions } from './actions';
 
 const initialState = {
-  token: '',
-  loginError: ''
+  token: null,
+  loginError: null
 };
 
 function reducer(state = initialState, action) {
