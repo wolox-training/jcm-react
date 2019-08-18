@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { func, string } from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 
 import authActions from '~redux/auth/actions'; // eslint-disable-line import/no-unresolved
@@ -43,11 +42,6 @@ function Login({ handleSubmit, loginError }) {
     </div>
   );
 }
-
-Login.propTypes = {
-  handleSubmit: func.isRequired,
-  loginError: string.isRequired
-};
 
 const mapStateToProps = ({ auth }) => ({
   loginError: auth.loginError

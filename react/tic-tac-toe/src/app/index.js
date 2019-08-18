@@ -1,27 +1,16 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
-import store from '~redux/store'; // eslint-disable-line import/no-unresolved
-
-import Login from '~screens/Login'; // eslint-disable-line import/no-unresolved
-
-import Game from '~screens/Game'; // eslint-disable-line import/no-unresolved
-
 import '../scss/application.scss';
-import PrivateRoute from './components/PrivateRoute';
+
+import configureStore from '~redux/store'; // eslint-disable-line import/no-unresolved
+
+import Router from '~components/Router'; // eslint-disable-line import/no-unresolved
 
 function App() {
+  const store = configureStore();
   return (
     <Provider store={store}>
-      <Router>
-        <>
-          <Switch>
-            <Route path="/login" component={Login} />
-            <PrivateRoute path="/game" component={Game} />
-          </Switch>
-        </>
-      </Router>
+      <Router />
     </Provider>
   );
 }

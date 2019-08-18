@@ -1,7 +1,7 @@
 import { actions } from './actions';
 
 const initialState = {
-  token: null,
+  token: localStorage.authToken,
   loginError: null
 };
 

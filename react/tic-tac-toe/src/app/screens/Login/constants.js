@@ -12,6 +12,6 @@ const ERRORS = {
 export const ERROR_MESSAGES = {
   [ERRORS.unauthorized]: {
     title: 'Login Failed',
-    description: 'Are you sure this is right password?'
+    description: 'Are you sure this is the right password?'
   }
 };

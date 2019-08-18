@@ -13,6 +13,7 @@ const actionCreators = {
         type: actions.LOGIN_SUCCESS,
         payload: response.data.token
       });
+      localStorage.setItem('authToken', response.data.token);
     } else if (response.status === 401) {
       dispatch({
         type: actions.LOGIN_FAILURE,
