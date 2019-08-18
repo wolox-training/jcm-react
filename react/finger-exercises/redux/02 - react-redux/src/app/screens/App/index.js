@@ -40,8 +40,8 @@ class App extends Component {
   };
 
   render() {
-    const { books, bookSelected, bookLoading } = this.props;
-    const dataStatus = bookLoading ? 'Loading Data...' : 'No Data';
+    const { books, bookSelected, booksLoading } = this.props;
+    const dataStatus = booksLoading ? 'Loading Data...' : 'No Data';
 
     return (
       <Fragment>
@@ -63,10 +63,10 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ books, bookSelected, bookLoading }) => ({
+const mapStateToProps = ({ books, bookSelected, booksLoading }) => ({
   books,
   bookSelected,
-  bookLoading
+  booksLoading
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -78,7 +78,7 @@ const mapDispatchToProps = dispatch => ({
 App.propTypes = {
   bookSelected: arrayOf(bookSelectedPropType),
   books: arrayOf(bookPropType),
-  bookLoading: bool.isRequired,
+  booksLoading: bool.isRequired,
   getBooks: func.isRequired,
   searchBook: func.isRequired,
   addToCart: func.isRequired
