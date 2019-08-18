@@ -67,6 +67,7 @@ const mapStateToProps = ({ books, bookSelected, booksLoading }) => ({
   books,
   bookSelected,
   booksLoading
+
 });
 
 const mapDispatchToProps = dispatch => ({
