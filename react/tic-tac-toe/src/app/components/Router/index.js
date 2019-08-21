@@ -5,7 +5,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import { history } from '~redux/store'; // eslint-disable-line import/no-unresolved
 
 import CheckRoute from './components/CheckRoute';
-import { PUBLIC_ROUTES } from './constants'; // eslint-disable-line import/no-unresolved
+import { PUBLIC_ROUTES } from './constants';
 
 function Router() {
   return (

@@ -1,29 +1,20 @@
-import React, { Component } from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { string, func } from 'prop-types';
 
-class CheckRoute extends Component {
-  renderRoute = () => {
-    const { component: RouteComponent, path, authToken } = this.props;
-
-    if (authToken) {
-      return path === '/login'
-        ? <Redirect to="/" />
-        : <RouteComponent />;
+function CheckRoute ({ component: Component, path, authToken, ...props }) {
+  if (authToken) {
+    if (path === '/login') {
+      return <Redirect to="/" />;
     }
-
-    return path === '/login'
-      ? <RouteComponent />
-      : <Redirect to="/login" />;
+  } else if (path !== '/login') {
+    return <Redirect to="/login" />;
   }
-
-  render () {
-    return <Route path={this.props.path} render={this.renderRoute} />;
-  }
+  return <Component {...props} />;
 }
 
-const mapDispatchToProps = (state) => ({
+const mapDispatchToProps = state => ({
   authToken: state.auth.token
 });
 

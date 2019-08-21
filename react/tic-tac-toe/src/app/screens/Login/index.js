@@ -13,7 +13,6 @@ import Input from '~components/Input'; // eslint-disable-line import/no-unresolv
 
 import Alert from '~components/Alert'; // eslint-disable-line import/no-unresolved
 
-
 function Login({ handleSubmit, loginError }) {
   return (
     <div className={styles.loginWrapper}>
@@ -43,11 +42,11 @@ function Login({ handleSubmit, loginError }) {
   );
 }
 
-const mapStateToProps = ({ auth }) => ({
-  loginError: auth.loginError
+const mapStateToProps = state => ({
+  loginError: state.auth.loginError
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   onSubmit: (values) => dispatch(authActions.login(values))
 });
 
