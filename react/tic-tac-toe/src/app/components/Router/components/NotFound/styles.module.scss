@@ -1,0 +1,33 @@
+@import 'src/scss/colors';
+
+.not-found-wrapper {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+}
+
+.not-found-inside {
+  max-width: 350px;
+  width: 100%;
+}
+
+.title {
+  color: $black;
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 18px;
+  margin-bottom: 10px;
+}
+
+.description {
+  color: $gray-700;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.image {
+  width: 100%;
+}
