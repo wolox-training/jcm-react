@@ -22,14 +22,11 @@
   width: 100vw;;
 }
 
-.login-inside {
-  max-width: 320px;
-  width: 100%;
-}
-
 .login-form {
   background-color: $white ;
   border-radius: 5px;
   box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+  max-width: 350px;
   padding: 30px 35px;
+  width: 100%;
 }
