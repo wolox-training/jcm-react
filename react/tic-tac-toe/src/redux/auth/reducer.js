@@ -1,21 +1,16 @@
+import { createReducer, onSetValue, completeState } from 'redux-recompose';
+
 import { actions } from './actions';
 
-const initialState = {
-  token: localStorage.authToken,
-  loginError: null
+const initialStateDescription = { token: localStorage.getItem('token') };
+const initialState = completeState(initialStateDescription);
+
+
+const reducerDescription = {
+  [actions.LOGOUT]: onSetValue(null)
 };
 
-function reducer(state = initialState, action) {
-  switch (action.type) {
-    case actions.LOGIN_SUCCESS:
-      return { ...state, token: action.payload };
-    case actions.LOGIN_FAILURE:
-      return { ...state, loginError: action.payload };
-    case actions.LOGOUT:
-      return { ...state, token: action.payload };
-    default:
-      return state;
-  }
-}
-
-export default reducer;
+export default createReducer(
+  initialState,
+  reducerDescription
+);
