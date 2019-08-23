@@ -10,7 +10,7 @@ import Input from '~components/Input'; // eslint-disable-line import/no-unresolv
 
 import Alert from '~components/Alert'; // eslint-disable-line import/no-unresolved
 
-import authActions from '~redux/auth/actions'; // eslint-disable-line import/no-unresolved
+import AuthService from '~services/AuthService'; // eslint-disable-line import/no-unresolved
 
 
 function Login({ handleSubmit, loginError }) {
@@ -47,7 +47,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: values => dispatch(authActions.login(values))
+  onSubmit: values => dispatch(AuthService.login(values))
 });
 
 export default compose(
