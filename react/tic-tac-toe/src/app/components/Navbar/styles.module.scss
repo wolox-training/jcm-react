@@ -1,0 +1,45 @@
+@import 'src/scss/colors';
+
+.nav {
+  align-items: center;
+  background-color: $blue;
+  display: flex;
+  padding: 24px;;
+}
+
+.nav-item {
+  color: #BEE3F8;
+
+  &:not(last-type-of) {
+    margin-right: 16px;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $white;
+  }
+}
+
+.nav-list {
+  flex-grow: 1;
+}
+
+.brand {
+  color: $white;
+  font-size: 20px;
+  font-weight: 600;
+  margin-right: 24px;
+}
+
+.btn-logout {
+  border: 1px solid $white;
+  border-radius: 5px;
+  color: $white;
+  padding: 8px 16px;
+
+  &:hover {
+    background-color: $white;
+    color: $blue;
+  }
+}
