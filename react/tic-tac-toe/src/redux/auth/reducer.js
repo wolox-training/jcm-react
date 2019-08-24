@@ -2,7 +2,7 @@ import { createReducer, onSetValue, completeState } from 'redux-recompose';
 
 import { actions } from './actions';
 
-const initialStateDescription = { token: localStorage.getItem('token') };
+const initialStateDescription = { auth: localStorage.getItem('token') };
 const initialState = completeState(initialStateDescription);
 
 
