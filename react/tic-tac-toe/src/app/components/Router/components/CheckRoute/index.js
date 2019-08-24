@@ -15,7 +15,7 @@ function CheckRoute ({ component: Component, path, authToken, ...props }) {
 }
 
 const mapStateToProps = state => ({
-  authToken: state.auth.token
+  authToken: state.auth.auth
 });
 
 CheckRoute.propTypes = {
