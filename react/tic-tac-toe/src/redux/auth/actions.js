@@ -5,7 +5,7 @@ export const actions = createTypes(['LOGOUT'], '@@AUTH');
 const actionCreators = {
   logout: () => ({
     type: actions.LOGOUT,
-    target: 'token'
+    target: 'auth'
   })
 };
 

@@ -35,7 +35,7 @@ function Login({ handleSubmit, loginError }) {
         />
         {loginError && (<Alert {...ERROR_MESSAGES[loginError]} />)}
         <button className={styles.button} type="submit">
-              Sign In
+          Sign In
         </button>
       </form>
     </div>

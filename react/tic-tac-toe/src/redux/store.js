@@ -7,6 +7,8 @@ import { wrapCombineReducers, fetchMiddleware } from 'redux-recompose';
 
 import authReducer from '~redux/auth/reducer'; // eslint-disable-line import/no-unresolved
 
+import matchReducer from '~redux/match/reducer'; // eslint-disable-line import/no-unresolved
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line no-underscore-dangle
 const combineReducers = wrapCombineReducers(CR);
 export const history = createBrowserHistory();
@@ -14,6 +16,7 @@ export const history = createBrowserHistory();
 const rootReducer = combineReducers({
   form: formReducer,
   auth: authReducer,
+  match: matchReducer,
   router: connectRouter(history)
 });
 
