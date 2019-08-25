@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { arrayOf, func } from 'prop-types';
+import { arrayOf, func, bool } from 'prop-types';
 import { bookSelectedPropType, bookPropType } from '@constants/propTypes';
 import bookActions from '@redux/book/actions';
 import Navbar from '@components/Navbar';
@@ -40,7 +40,9 @@ class App extends Component {
   };
 
   render() {
-    const { bookSelected, books } = this.props;
+    const { books, bookSelected, booksLoading } = this.props;
+    const dataStatus = booksLoading ? 'Loading Data...' : 'No Data';
+
     return (
       <Fragment>
         <Navbar />
@@ -49,8 +51,8 @@ class App extends Component {
           {books.length ? (
             books.map(this.renderBooks)
           ) : (
-            <div className={styles.noData}>
-              <h2 className={styles.title}>No Data</h2>
+            <div className={styles.dataStatus}>
+              <h2 className={styles.title}>{dataStatus}</h2>
             </div>
           )}
         </div>
@@ -61,10 +63,11 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ books, bookSelected, bookLoading }) => ({
+const mapStateToProps = ({ books, bookSelected, booksLoading }) => ({
   books,
   bookSelected,
-  bookLoading
+  booksLoading
+
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -76,6 +79,7 @@ const mapDispatchToProps = dispatch => ({
 App.propTypes = {
   bookSelected: arrayOf(bookSelectedPropType),
   books: arrayOf(bookPropType),
+  booksLoading: bool.isRequired,
   getBooks: func.isRequired,
   searchBook: func.isRequired,
   addToCart: func.isRequired

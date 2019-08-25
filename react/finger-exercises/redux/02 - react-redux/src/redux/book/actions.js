@@ -1,4 +1,4 @@
-import { DATA } from '@constants/data';
+import BookService from '@services/BookService';
 
 /**
  * See the @@BOOKS? That's the namespace.
@@ -7,18 +7,31 @@ import { DATA } from '@constants/data';
  * related to @@BOOKS for easier debugging.
  */
 export const actions = {
-  GET_BOOKS: '@@BOOK/GET_BOOKS',
   ADD_TO_CART: '@@BOOK/ADD_TO_CART',
   ADD_ITEM: '@@BOOK/ADD_ITEM',
   REMOVE_ITEM: '@@BOOK/REMOVE_ITEM',
-  SEARCH_ITEM: '@@BOOK/SEARCH_ITEM'
+  SEARCH_ITEM: '@@BOOK/SEARCH_ITEM',
+  GET_BOOKS: '@@BOOK/GET_BOOKS',
+  GET_BOOKS_SUCCESS: '@@BOOK/GET_BOOKS_SUCCESS',
+  GET_BOOKS_FAILURE: '@@BOOK/GET_BOOKS_FAILURE'
 };
 
 const actionsCreators = {
-  getBooks: () => ({
-    type: actions.GET_BOOKS,
-    payload: DATA
-  }),
+  getBooks: () => async dispatch => {
+    dispatch({ type: actions.GET_BOOKS });
+    const response = await BookService.getBooks();
+    if (response.ok) {
+      dispatch({
+        type: actions.GET_BOOKS_SUCCESS,
+        payload: response.data
+      });
+    } else {
+      dispatch({
+        type: actions.GET_BOOKS_FAILURE,
+        payload: response.problem
+      });
+    }
+  },
   addToCart: item => ({
     type: actions.ADD_TO_CART,
     payload: item
