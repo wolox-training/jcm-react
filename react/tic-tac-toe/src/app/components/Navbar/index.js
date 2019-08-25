@@ -8,10 +8,7 @@ import styles from './styles.module.scss';
 import authActions from '~redux/auth/actions'; // eslint-disable-line import/no-unresolved
 
 class Navbar extends Component {
-  handleLogout = () => {
-    this.props.logout();
-    localStorage.removeItem('authToken');
-  }
+  handleLogout = () => this.props.logout()
 
   render() {
     return (
