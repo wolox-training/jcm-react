@@ -1,0 +1,35 @@
+@import 'src/scss/colors.scss';
+
+.button {
+  background-color: $blue;
+  border-radius: 5px;
+  color: $white;
+  font-weight: 700;
+  padding: 8px 16px;
+
+  &:hover {
+    background-color: $blue-dark;
+  }
+}
+
+.login-wrapper {
+  align-items: center;
+  background-color: $gray-200;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;;
+}
+
+.login-inside {
+  max-width: 320px;
+  width: 100%;
+}
+
+.login-form {
+  background-color: $white ;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+  padding: 30px 35px;
+}

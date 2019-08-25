@@ -3,17 +3,7 @@ import React, { Component } from 'react';
 import MatchServices from '~services/MatchesService'; // eslint-disable-line import/no-unresolved
 
 import styles from './styles.module.scss';
-
-const PLAYER_IDS = {
-  playerOne: 'player_one',
-  playerTwo: 'player_two'
-};
-
-const WINNERS = {
-  [PLAYER_IDS.playerOne]: 'Player One',
-  [PLAYER_IDS.playerTwo]: 'Player Two',
-  tie: 'Tie'
-};
+import { WINNERS } from './constants';
 
 class MatchHistory extends Component {
   state = {
