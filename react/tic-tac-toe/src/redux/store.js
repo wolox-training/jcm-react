@@ -15,9 +15,8 @@ const rootReducer = combineReducers({
   router: connectRouter(history)
 });
 
-const configureStore = preloadedState => createStore(
+export default createStore(
   rootReducer,
-  preloadedState,
   composeEnhancers(
     applyMiddleware(
       thunk,
@@ -25,5 +24,3 @@ const configureStore = preloadedState => createStore(
     )
   )
 );
-
-export default configureStore;
