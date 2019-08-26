@@ -4,7 +4,7 @@ import Spinner from 'react-spinkit';
 function WithLoading(Component) {
   return ({ isLoading, ...props }) =>
     isLoading
-      ? <Spinner name="pacman" />
+      ? <Spinner name="circle" />
       : <Component {...props} />;
 }
 
