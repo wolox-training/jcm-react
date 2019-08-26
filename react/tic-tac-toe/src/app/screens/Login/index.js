@@ -1,19 +1,18 @@
 import React from 'react';
-import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { Field, reduxForm } from 'redux-form';
 
-import styles from './styles.module.scss';
 import { VALIDATIONS, ERROR_MESSAGES } from './constants';
+import styles from './styles.module.scss';
+
+import AuthService from '~services/AuthService'; // eslint-disable-line import/no-unresolved
 
 import Input from '~components/Input'; // eslint-disable-line import/no-unresolved
 
 import Alert from '~components/Alert'; // eslint-disable-line import/no-unresolved
 
-import AuthService from '~services/AuthService'; // eslint-disable-line import/no-unresolved
-
-
-function Login({ handleSubmit, loginError }) {
+function Login({ authError, authLoading, handleSubmit }) {
   return (
     <div className={styles.loginWrapper}>
       <form className={styles.loginForm} onSubmit={handleSubmit}>
@@ -33,9 +32,11 @@ function Login({ handleSubmit, loginError }) {
           placeholder="e.g. * * * * * * * *"
           validate={VALIDATIONS.password}
         />
-        {loginError && (<Alert {...ERROR_MESSAGES[loginError]} />)}
-        <button className={styles.button} type="submit">
-          Sign In
+
+        {authError && (<Alert {...ERROR_MESSAGES[authError]} />)}
+
+        <button disabled={authLoading} className={styles.button} type="submit">
+          {authLoading ? 'Loading...' : 'Sign In'}
         </button>
       </form>
     </div>
@@ -43,7 +44,8 @@ function Login({ handleSubmit, loginError }) {
 }
 
 const mapStateToProps = state => ({
-  loginError: state.auth.loginError
+  authError: state.auth.authError,
+  authLoading: state.auth.authLoading
 });
 
 const mapDispatchToProps = dispatch => ({

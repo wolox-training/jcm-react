@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { shape, arrayOf, func, number, string, bool } from 'prop-types';
+import { func, string, bool } from 'prop-types';
 
-import { PLAYER_IDS, WINNERS } from './constants';
+import MatchHistory from './layout';
 
 import MatchServices from '~services/MatchesService'; // eslint-disable-line import/no-unresolved
 
-import styles from './styles.module.scss';
+import { matchesPropTypes } from '~constants/propTypes'; // eslint-disable-line import/no-unresolved
 
-class MatchHistory extends Component {
+class MatchHistoryContainer extends Component {
   componentDidMount() {
     this.props.getMatches();
   }
@@ -16,50 +16,23 @@ class MatchHistory extends Component {
   render () {
     const { matches, matchesLoading, matchesError } = this.props;
 
-    if (matchesLoading) {
-      return <h1>Loading...</h1>;
-    } else if (matchesError) {
+    if (matchesError) {
       return <h1>Oops, something was wrong!</h1>;
-    } else if (matches && !matches.length) {
+    } else if (!matches.length && !matchesLoading) {
       return <h1>Empty data :)</h1>;
     }
 
-    return (
-      <table className={styles.matchHistory}>
-        <thead>
-          <tr className={styles.headerRow}>
-            <th className={styles.headerCell}>Player 1</th>
-            <th className={styles.headerCell}>Player 2</th>
-            <th className={styles.headerCell}>Winner</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {matches.map(match => (
-            <tr key={match.id} className={styles.bodyRow}>
-              <td className={styles.bodyCell}>{match.player_one}</td>
-              <td className={styles.bodyCell}>{match.player_two}</td>
-              <td className={styles.bodyCell}>{WINNERS[match.winner]}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    );
+    return <MatchHistory isLoading={matchesLoading} matches={matches} />;
   }
 }
 
-MatchHistory.propTypes = {
+MatchHistoryContainer.propTypes = {
   getMatches: func.isRequired,
-  matches: arrayOf(shape({
-    id: number.isRequired,
-    [PLAYER_IDS.playerOne]: string.isRequired,
-    [PLAYER_IDS.playerTwo]: string.isRequired,
-    winner: string.isRequired,
-    createdAt: string
-  })).isRequired,
+  matches: matchesPropTypes.isRequired,
   matchesError: string,
   matchesLoading: bool
 };
+
 
 const mapStateToProps = (state) => ({
   matches: state.match.matches,
@@ -72,4 +45,4 @@ const mapDispatchToProps = (dispatch) => ({
   getMatches: () => dispatch(MatchServices.getMatches())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MatchHistory);
+export default connect(mapStateToProps, mapDispatchToProps)(MatchHistoryContainer);
