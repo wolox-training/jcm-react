@@ -22,10 +22,13 @@ const actionCreators = {
       });
     }
   },
-  logout: () => ({
-    type: actions.LOGOUT,
-    payload: null
-  })
+  logout: () => dispatch => {
+    localStorage.removeItem('authToken');
+    dispatch({
+      type: actions.LOGOUT,
+      payload: null
+    });
+  }
 };
 
 export default actionCreators;
