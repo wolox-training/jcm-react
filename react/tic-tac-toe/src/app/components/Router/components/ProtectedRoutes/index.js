@@ -3,11 +3,17 @@ import { Route, Switch } from 'react-router-dom';
 
 import { PROTECTED_ROUTES } from '../../constants';
 
+// eslint-disable-next-line import/no-unresolved
+import Navbar from '~components/Navbar';
+
 function ProtectedRoutes() {
   return (
-    <Switch>
-      {PROTECTED_ROUTES.map(route => <Route key={route.path} {...route} />)}
-    </Switch>
+    <>
+      <Navbar />
+      <Switch>
+        {PROTECTED_ROUTES.map(route => <Route key={route.path} {...route} />)}
+      </Switch>
+    </>
   );
 }
 

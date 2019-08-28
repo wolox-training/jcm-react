@@ -2,7 +2,8 @@ import AuthService from '~services/AuthService'; // eslint-disable-line import/n
 
 export const actions = {
   LOGIN_SUCCESS: '@@AUTH/LOGIN_SUCCESS',
-  LOGIN_FAILURE: '@@AUTH/LOGIN_FAILURE'
+  LOGIN_FAILURE: '@@AUTH/LOGIN_FAILURE',
+  LOGOUT: '@@AUTH/LOGOUT'
 };
 
 const actionCreators = {
@@ -20,6 +21,13 @@ const actionCreators = {
         payload: response.data
       });
     }
+  },
+  logout: () => dispatch => {
+    localStorage.removeItem('authToken');
+    dispatch({
+      type: actions.LOGOUT,
+      payload: null
+    });
   }
 };
 

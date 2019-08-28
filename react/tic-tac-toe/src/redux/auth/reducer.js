@@ -11,6 +11,8 @@ function reducer(state = initialState, action) {
       return { ...state, token: action.payload };
     case actions.LOGIN_FAILURE:
       return { ...state, loginError: action.payload };
+    case actions.LOGOUT:
+      return { ...state, token: action.payload };
     default:
       return state;
   }
