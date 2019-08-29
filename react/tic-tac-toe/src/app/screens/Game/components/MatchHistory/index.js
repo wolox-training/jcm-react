@@ -35,7 +35,7 @@ class MatchHistory extends Component {
         </thead>
 
         <tbody>
-          {this.props.matches.map(match => (
+          {matches.map(match => (
             <tr key={match.id} className={styles.bodyRow}>
               <td className={styles.bodyCell}>{match.player_one}</td>
               <td className={styles.bodyCell}>{match.player_two}</td>
