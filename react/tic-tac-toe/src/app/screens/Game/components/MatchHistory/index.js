@@ -1,34 +1,20 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { shape, arrayOf, func, number, string, bool } from 'prop-types';
+
+import { PLAYER_IDS, WINNERS } from './constants';
 
 import MatchServices from '~services/MatchesService'; // eslint-disable-line import/no-unresolved
 
 import styles from './styles.module.scss';
-import { WINNERS } from './constants';
 
 class MatchHistory extends Component {
-  state = {
-    matches: [],
-    matchesLoading: false,
-    matchesError: null
-  }
-
   componentDidMount() {
-    this.getMatches();
-  }
-
-  getMatches = async () => {
-    this.setState({ matchesLoading: true });
-    const response = await MatchServices.getMatches();
-    if (response.ok) {
-      this.setState({ matches: response.data });
-    } else {
-      this.setState({ matchesError: response.problem });
-    }
-    this.setState({ matchesLoading: false });
+    this.props.getMatches();
   }
 
   render () {
-    const { matches, matchesLoading, matchesError } = this.state;
+    const { matches, matchesLoading, matchesError } = this.props;
 
     if (matchesLoading) {
       return <h1>Loading...</h1>;
@@ -62,4 +48,28 @@ class MatchHistory extends Component {
   }
 }
 
-export default MatchHistory;
+MatchHistory.propTypes = {
+  getMatches: func.isRequired,
+  matches: arrayOf(shape({
+    id: number.isRequired,
+    [PLAYER_IDS.playerOne]: string.isRequired,
+    [PLAYER_IDS.playerTwo]: string.isRequired,
+    winner: string.isRequired,
+    createdAt: string
+  })).isRequired,
+  matchesError: string,
+  matchesLoading: bool
+};
+
+const mapStateToProps = (state) => ({
+  matches: state.match.matches,
+  matchesLoading: state.match.matchesLoading,
+  matchesError: state.match.matchesError
+
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getMatches: () => dispatch(MatchServices.getMatches())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MatchHistory);

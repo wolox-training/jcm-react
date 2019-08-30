@@ -1,4 +1,4 @@
-const PLAYER_IDS = {
+export const PLAYER_IDS = {
   playerOne: 'player_one',
   playerTwo: 'player_two'
 };
