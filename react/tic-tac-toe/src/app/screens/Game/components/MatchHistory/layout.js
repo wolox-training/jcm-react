@@ -18,7 +18,6 @@ function MatchHistory({ matches }) {
           <th className={styles.headerCell}>Winner</th>
         </tr>
       </thead>
-
       <tbody>
         {matches.map(match => (
           <tr key={match.id} className={styles.bodyRow}>

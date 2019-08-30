@@ -5,9 +5,9 @@ import { PLAYER_IDS } from './players';
 export const matchesPropTypes = arrayOf(
   shape({
     id: number.isRequired,
-    [PLAYER_IDS.playerOne]: string,
-    [PLAYER_IDS.playerTwo]: string,
-    winner: string,
+    [PLAYER_IDS.playerOne]: string.isRequired,
+    [PLAYER_IDS.playerTwo]: string.isRequired,
+    winner: string.isRequired,
     createdAt: string
   })
 );

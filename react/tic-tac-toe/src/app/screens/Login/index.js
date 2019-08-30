@@ -32,9 +32,7 @@ function Login({ authError, authLoading, handleSubmit }) {
           placeholder="e.g. * * * * * * * *"
           validate={VALIDATIONS.password}
         />
-
         {authError && (<Alert {...ERROR_MESSAGES[authError]} />)}
-
         <button disabled={authLoading} className={styles.button} type="submit">
           {authLoading ? 'Loading...' : 'Sign In'}
         </button>
