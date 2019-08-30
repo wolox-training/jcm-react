@@ -1,5 +1,8 @@
 import { createTypes } from 'redux-recompose';
 
+// eslint-disable-next-line import/no-unresolved
+import { AUTH_TARGET } from '~redux/constants';
+
 export const actions = createTypes(['LOGOUT'], '@@AUTH');
 
 const actionCreators = {
@@ -7,7 +10,7 @@ const actionCreators = {
     localStorage.removeItem('token');
     dispatch({
       type: actions.LOGOUT,
-      target: 'auth'
+      target: AUTH_TARGET
     });
   }
 };
